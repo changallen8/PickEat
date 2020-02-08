@@ -29,8 +29,8 @@ class ZomatoAdapter(var restaurants: List<Restaurant>) : RecyclerView.Adapter<Zo
     }
 
     class ZomatoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun setUpForItem(restaurant: Restaurant) {
-            itemView.text_view_rest.text = restaurant.name
+            fun setUpForItem(restaurant: Restaurant) {
+            itemView.text_view_rest.text = restaurant.restaurant.name
         }
     }
 
