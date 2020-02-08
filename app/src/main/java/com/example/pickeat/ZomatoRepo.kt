@@ -19,7 +19,7 @@ class ZomatoRepo{
     //,latitude, longitude
 
     fun getRestaurant(type: String, callback: (zomatoResponse: ZomatoResponse?) -> Unit){
-        zomatoService.getRestaurantsBySearch(type).enqueue(object : Callback<ZomatoResponse> {
+        zomatoService.getRestaurantsBySearch(type,"rating").enqueue(object : Callback<ZomatoResponse> {
             override fun onFailure(call: Call<ZomatoResponse>, t: Throwable){
 
                 callback(null)

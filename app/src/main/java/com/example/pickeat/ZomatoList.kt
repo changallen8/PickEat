@@ -1,5 +1,7 @@
 package com.example.pickeat
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -11,9 +13,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pickeat.R
 import kotlinx.android.synthetic.main.activity_rest_list.*
 
+
 class ZomatoList : AppCompatActivity(){
 
     private lateinit var zomatoViewModel: ZomatoViewModel
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home){
@@ -37,17 +41,25 @@ class ZomatoList : AppCompatActivity(){
 
             zomatoViewModel.attemptToGet(input)
 
-            recycler_view.setHasFixedSize(true)
-            recycler_view.layoutManager = GridLayoutManager(this, 1)
 
-            val zomatoAdapter = ZomatoAdapter(listOf())
-
-            recycler_view.adapter = zomatoAdapter
 
             zomatoViewModel.zomatoResponse.observe(this, Observer { zomato ->
+
                 progressBar.visibility= View.INVISIBLE
-                recycler_view.visibility= View.VISIBLE
-                zomatoAdapter.loadNewData(zomato.restaurants)
+                text_view_link.visibility=View.VISIBLE
+                text_view_rest.visibility=View.VISIBLE
+
+                val random = (1..(zomato.restaurants.size - 1)).shuffled().first()
+
+                text_view_rest.text = zomato.restaurants[random].restaurant.name
+
+                var link = zomato.restaurants[random].restaurant.url
+
+                text_view_link.setOnClickListener{
+                    val openURL = Intent(Intent.ACTION_VIEW)
+                    openURL.data = Uri.parse("$link")
+                    startActivity(openURL)
+                }
             })
 
             zomatoViewModel.error.observe(this, Observer { error ->
