@@ -33,13 +33,32 @@ class ZomatoList : AppCompatActivity(){
 
         val input: String? = intent.getStringExtra("Input")
 
-        if (input != null) {
+        var cuisine: String? = intent.getStringExtra("Cuisine")
 
-            supportActionBar?.title = "Search results for $input"
+        when(cuisine){
+            "N/A" -> cuisine = ""
+            "American" -> cuisine = "1"
+            "Pizza" -> cuisine = "82"
+            "Chinese" -> cuisine = "25"
+            "Sandwich" -> cuisine = "304"
+            "Italian" -> cuisine = "55"
+            "Fast Food" -> cuisine = "40"
+            "Bar Food" -> cuisine = "227"
+            "Desserts" -> cuisine = "100"
+            "Mexican" -> cuisine = "73"
+            "Japanese" -> cuisine = "60"
+            "Asian" -> cuisine = "3"
+        }
+
+
+        if (input != null && cuisine!=null) {
+
+            supportActionBar?.title = "Best Restaurant for $input"
 
             zomatoViewModel = ViewModelProviders.of(this).get(ZomatoViewModel::class.java)
 
-            zomatoViewModel.attemptToGet(input)
+            zomatoViewModel.attemptToGet(cuisine)
+
 
 
 
@@ -49,7 +68,7 @@ class ZomatoList : AppCompatActivity(){
                 text_view_link.visibility=View.VISIBLE
                 text_view_rest.visibility=View.VISIBLE
 
-                val random = (1..(zomato.restaurants.size - 1)).shuffled().first()
+                val random = (0..(zomato.results_shown - 1)).shuffled().first()
 
                 text_view_rest.text = zomato.restaurants[random].restaurant.name
 

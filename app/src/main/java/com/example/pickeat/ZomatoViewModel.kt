@@ -11,11 +11,11 @@ class ZomatoViewModel : ViewModel(){
 
     val error = MutableLiveData<Boolean>(false)
 
-    fun attemptToGet(type: String) {
+    fun attemptToGet(cuisine: String) {
 
         thread {
 
-            zomatoRepo.getRestaurant(type) { newZomatoRepo ->
+            zomatoRepo.getRestaurant(cuisine) { newZomatoRepo ->
 
                 if (newZomatoRepo != null) {
                     zomatoResponse.postValue(newZomatoRepo)

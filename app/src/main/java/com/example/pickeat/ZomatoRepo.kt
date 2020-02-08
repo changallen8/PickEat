@@ -14,12 +14,11 @@ class ZomatoRepo{
 
     private val zomatoService = retrofit.create(ZomatoService::class.java)
 
-    //val latitude = "40.52484935"
-    //val longitude = "-74.45883301204988"
-    //,latitude, longitude
+    val latitude = "40.5478049261"
+    val longitude = "-74.4408550205"
 
-    fun getRestaurant(type: String, callback: (zomatoResponse: ZomatoResponse?) -> Unit){
-        zomatoService.getRestaurantsBySearch(type,"rating").enqueue(object : Callback<ZomatoResponse> {
+    fun getRestaurant(cuisine: String, callback: (zomatoResponse: ZomatoResponse?) -> Unit){
+        zomatoService.getRestaurantsBySearch(latitude, longitude,cuisine).enqueue(object : Callback<ZomatoResponse> {
             override fun onFailure(call: Call<ZomatoResponse>, t: Throwable){
 
                 callback(null)

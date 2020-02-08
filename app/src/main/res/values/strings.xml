@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">PickEat</string>
+    <string name="selected_item">Selected item:</string>
 
+    <string-array name="Cuisines">
+        <item>N/A</item>
+        <item>American</item>   //1
+        <item>Pizza</item>      //82
+        <item>Chinese</item>    //25
+        <item>Sandwich</item>       //304
+        <item>Italian</item>        //55
+        <item>Fast Food</item>      //40
+        <item>Bar Food</item>       //227
+        <item>Desserts</item>       //100
+        <item>Mexican</item>        //73
+        <item>Japanese</item>       //60
+        <item>Asian</item>      //3
+    </string-array>
 </resources>
