@@ -35,6 +35,8 @@ class ZomatoList : AppCompatActivity(){
 
         var cuisine: String? = intent.getStringExtra("Cuisine")
 
+        supportActionBar?.title = "Best Restaurant for $cuisine"
+
         when(cuisine){
             "N/A" -> cuisine = ""
             "American" -> cuisine = "1"
@@ -53,7 +55,7 @@ class ZomatoList : AppCompatActivity(){
 
         if (cuisine!=null) {
 
-            supportActionBar?.title = "Best Restaurant for $cuisine"
+
 
             zomatoViewModel = ViewModelProviders.of(this).get(ZomatoViewModel::class.java)
 
