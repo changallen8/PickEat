@@ -31,7 +31,7 @@ class ZomatoList : AppCompatActivity(){
         setContentView(R.layout.activity_rest_list)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val input: String? = intent.getStringExtra("Input")
+        //val input: String? = intent.getStringExtra("Input")
 
         var cuisine: String? = intent.getStringExtra("Cuisine")
 
@@ -51,9 +51,9 @@ class ZomatoList : AppCompatActivity(){
         }
 
 
-        if (input != null && cuisine!=null) {
+        if (cuisine!=null) {
 
-            supportActionBar?.title = "Best Restaurant for $input"
+            supportActionBar?.title = "Best Restaurant for $cuisine"
 
             zomatoViewModel = ViewModelProviders.of(this).get(ZomatoViewModel::class.java)
 
