@@ -68,13 +68,21 @@ class ZomatoList : AppCompatActivity(){
                 progressBar.visibility= View.INVISIBLE
                 text_view_link.visibility=View.VISIBLE
                 text_view_rest.visibility=View.VISIBLE
-                feature_image_view.visibility=View.VISIBLE
+
 
                 val random = (0..(zomato.results_shown - 1)).shuffled().first()
 
                 text_view_rest.text = zomato.restaurants[random].restaurant.name
 
-                Picasso.get().load("${zomato.restaurants[random].restaurant.featured_image}").into(feature_image_view);
+                val imgUrl = zomato.restaurants[random].restaurant.featured_image
+
+                if (imgUrl == ""){
+                    error_img_text.visibility=View.VISIBLE
+                }
+                else {
+                    Picasso.get().load("$imgUrl").into(feature_image_view);
+                    feature_image_view.visibility = View.VISIBLE
+                }
 
                 var link = zomato.restaurants[random].restaurant.url
 
