@@ -9,8 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.pickeat.R
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_rest_list.*
 
 
@@ -38,7 +37,7 @@ class ZomatoList : AppCompatActivity(){
         supportActionBar?.title = "Best Restaurant for $cuisine"
 
         when(cuisine){
-            "N/A" -> cuisine = ""
+            "Anything" -> cuisine = ""
             "American" -> cuisine = "1"
             "Pizza" -> cuisine = "82"
             "Chinese" -> cuisine = "25"
@@ -69,10 +68,13 @@ class ZomatoList : AppCompatActivity(){
                 progressBar.visibility= View.INVISIBLE
                 text_view_link.visibility=View.VISIBLE
                 text_view_rest.visibility=View.VISIBLE
+                feature_image_view.visibility=View.VISIBLE
 
                 val random = (0..(zomato.results_shown - 1)).shuffled().first()
 
                 text_view_rest.text = zomato.restaurants[random].restaurant.name
+
+                Picasso.get().load("${zomato.restaurants[random].restaurant.featured_image}").into(feature_image_view);
 
                 var link = zomato.restaurants[random].restaurant.url
 

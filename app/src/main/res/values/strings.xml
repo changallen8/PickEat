@@ -3,7 +3,7 @@
     <string name="selected_item">Selected item:</string>
 
     <string-array name="Cuisines">
-        <item>N/A</item>
+        <item>Anything</item>
         <item>American</item>   //1
         <item>Pizza</item>      //82
         <item>Chinese</item>    //25
